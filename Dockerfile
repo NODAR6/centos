@@ -41,7 +41,7 @@ EXPOSE 8080
 LABEL maintainer="Your Name <your.email@example.com>"
 
 # Copy your custom script (text.sh) into the image
-COPY text.sh /usr/local/bin/
+COPY text.sh ./text.sh /
 
 # Start Nginx service
 CMD ["nginx", "-g", "daemon off;"]
