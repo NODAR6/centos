@@ -24,11 +24,22 @@
 
 
 
-
-# Base image
+# Use the official CentOS base image
 FROM centos:latest
 
-# Install necessary packages
-RUN yum -y install epel-release && \
-    yum -y install nginx mariadb-server curl iputils && \
+# Install necessary packages (Nginx, SQL, curl, ping)
+RUN yum install -y epel-release && \
+    yum install -y nginx mariadb curl iputils && \
     yum clean all
+
+# Expose port 8080
+EXPOSE 8080
+
+# Set labels (replace with your name and value)
+LABEL maintainer="Your Name <your.email@example.com>"
+
+# Copy your custom script (text.sh) into the image
+COPY text.sh /usr/local/bin/
+
+# Start Nginx service
+CMD ["nginx", "-g", "daemon off;"]
