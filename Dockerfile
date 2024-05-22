@@ -23,14 +23,16 @@
 #  CMD ["nginx", "-g", "daemon off;"]
 
 
-
-# Use the official CentOS base image
 FROM centos:latest
 
-# Install necessary packages (Nginx, SQL, curl, ping)
-RUN yum install -y epel-release && \
-    yum install -y nginx mariadb curl iputils && \
-    yum clean all
+# Install EPEL release
+RUN yum install -y epel-release
+
+# Install other packages
+RUN yum install -y nginx mariadb curl iputils
+
+# Clean up
+RUN yum clean all
 
 # Expose port 8080
 EXPOSE 8080
